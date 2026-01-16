@@ -90,7 +90,10 @@ document.getElementById("connectBtn").onclick = async () => {
 
   // ws = new WebSocket(`ws://${location.host}?userId=${myId}`);
   // Replace location.host with your LAN IP
-  ws = new WebSocket(`ws://192.168.1.58:3000?userId=${myId}`);
+  // ws = new WebSocket(`ws://192.168.1.58:3000?userId=${myId}`);
+  const protocol = location.protocol === "https:" ? "wss" : "ws";
+  ws = new WebSocket(`${protocol}://${location.host}?userId=${myId}`);
+
 
   ws.onopen = () => {
     statusEl.textContent = "Connected to signaling server";
